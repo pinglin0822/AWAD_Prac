@@ -72,3 +72,6 @@ Route::view('/admin', 'admin');
 Route::get('logout', [LoginController::class,'logout']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

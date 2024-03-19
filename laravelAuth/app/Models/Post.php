@@ -10,5 +10,5 @@ class Post extends Model
     use HasFactory;
     protected $fillable=['title','content','user_id'];
       //public $table="post";
-      //public $timestamps=false;
+      public $timestamps=false;
 }

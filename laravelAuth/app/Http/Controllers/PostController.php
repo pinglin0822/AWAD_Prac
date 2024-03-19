@@ -9,42 +9,24 @@ class PostController extends Controller
 {    
     public function index()
     {
-        $posts = Post::all();
-        return view("post.index", ["posts"=> $posts]);
-    } 
-    public function show()
+        return Post::all();
+    }
+   
+    public function store(Request $request)
+    {      
+        return Post::create($request->all());        
+    }
+    public function update(Request $request, $id)
     {
-        $posts = Post::all();
-        return view("post.show", ["posts"=> $posts]);
- 
+        $post=Post::findOrFail($id);
+        $post->update($request->all());
+        return $post;
     }
  
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-       $post->delete();
-       return redirect("/posts/index");
+        $post=Post::findOrFail($id);
+        $post->delete();
+        return 204;
     }
-    public function create()
-    {
-        if (Gate::allows('isAuthor')) {
-            dd('Author allowed');
-        } else
-            dd('You are not an Author');
-    }
-    public function edit()
-    {
-        if (Gate::allows('isAuthor')) {
-            dd('Author allowed');
-        } else
-            dd('You are not an Author');
-    }
-    public function delete()
-    {
-        if (Gate::allows('isAdmin')) {
-            dd('Admin allowed');
-        } else
-            dd('You are not Admin');
-    }
- 
- 
 }
